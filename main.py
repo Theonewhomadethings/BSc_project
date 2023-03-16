@@ -86,9 +86,10 @@ def main(K, N, stand_dev, delta_t, iteration2, initialState):
   #  print(check2)
   #  print(np.shape(evolution_op1)) #DEBUG 2
    # pr
-    #print(initial_stateBin, initial_stateInt)
+       #print(initial_stateBin, initial_stateInt)
+    print(" intN", integerN[initialState])
     init_state = np.zeros(shape = (numbOfStatesN))
-    init_state[integerN[initialState]] = 1
+    init_state[initialState] = 1
    # for k in range(len(init_state)):
     #    if init_state[k] == 1:
      #       print("there is a 1 present")
@@ -114,7 +115,7 @@ def main(K, N, stand_dev, delta_t, iteration2, initialState):
     k10 = []
 
     dataY = [[0 for col in range(10)] for row in range(1000)]
-    print(np.shape(dataY))
+    #print(np.shape(dataY))
     v = 9
     while v >= 0:
         
@@ -211,7 +212,7 @@ def main(K, N, stand_dev, delta_t, iteration2, initialState):
     t = np.linspace(1, 1000, num = 1000, dtype=int)
    # for row in dataY[:5]:
     #    print(row) 
-    plt.title("New plot for q3.")
+    plt.title("The expectation value of the occupation numbers as function of time")
     plt.xlabel("t")
     plt.ylabel("<n_k>")
     plt.plot(t, k1Vals, label = "k1")
@@ -228,7 +229,13 @@ def main(K, N, stand_dev, delta_t, iteration2, initialState):
     plt.legend()
     plt.show()
 #main(K=10, N = 5, stand_dev = 0.05, delta_t=0.01, iteration2 = 1000)
-main(K=10, N = 5, stand_dev = 0.03, delta_t=0.2, iteration2 = 1000, initialState = 41)
+#main(K=10, N = 5, stand_dev = 0.03, delta_t=0.2, iteration2 = 1000, initialState = 31) # figure 1
+#main(K=10, N = 5, stand_dev = 0.018, delta_t=0.15, iteration2 = 1000, initialState = 0)
+#main(K=10, N = 5, stand_dev = 0.020, delta_t=0.12, iteration2 = 1000, initialState = 40) # figure 2
+#main(K=10, N = 5, stand_dev = 0.024, delta_t=0.12, iteration2 = 1000, initialState = 29) # figure 3
+main(K=10, N = 5, stand_dev = 0.025, delta_t=0.015, iteration2 = 1000, initialState = 0) # figure 3
 
-#initialState any number between 0 and 251 where when it is 0 it is integerN[0] = 31 and when it is integerN[251] it is = 991 or 992
-
+#delta t = 0.11
+#intial state = 0
+#stand_dev = 0.018
+#initialState any number between 0 and 251 where when it is 0 it is integerN[0] = 31 and when it is integerN[251] it is = 992
