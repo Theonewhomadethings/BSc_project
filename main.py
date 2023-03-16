@@ -1,3 +1,4 @@
+
 import numpy as np
 from math import comb
 import math
@@ -93,14 +94,30 @@ def main(K, N, stand_dev, delta_t, iteration2):
      #       print("there is a 1 present")
     #print(np.shape(init_state))
     #print(evolOP)
-    for h in range(iteration2):
-      init_state = np.dot(evolOP, init_state) 
-    final_state = init_state
-   # print(init_state)  
-  #  print(np.shape(integerN)) #(252, )
-   # print(binaryN) #(252,10)
+    '''
+    need to build a 2d Matrix of 
+    iterations[kvalues = 10, 9, 8, 7, 6, 5, 4, 3, 2,   1]
+
+    iteration1[<n_k=10>, <n_k=9>,                  <n_1>]
+    iteration2[<n_k=10>, <n_k=9>,                  <n_1>]
+    iteration1000[<n_k=10>, <n_k=9>,               <n_1>]
+    '''
+    k1 = []
+    k2 = []
+    k3 = []
+    k4 = []
+    k5 = []
+    k6 = []
+    k7 = []
+    k8 = []
+    k9 = []
+    k10 = []
+
+    dataY = [[0 for col in range(10)] for row in range(1000)]
+    print(np.shape(dataY))
     v = 9
     while v >= 0:
+        
         u = 0
         while u < 252:
             if v == 0:
@@ -134,118 +151,80 @@ def main(K, N, stand_dev, delta_t, iteration2):
                 k1.append(binaryN[u][v])
                 u = u + 1
         v = v - 1
-    #print(np.shape(final_state))
-#    final_state = np.absolute(final_state)
-#build the k = 1 case first 
-    sum1 = 0
-    sum2 = 0
-    sum3 = 0 
-    sum4 = 0
-    sum5 = 0
-    sum6 = 0
-    sum7 = 0
-    sum8 = 0
-    sum9 = 0
-    sum10 = 0
-    k1Contents = []
-    k2Contents = []
-    k3Contents = []
-    k4Contents = []
-    k4Contents = []
-    k5Contents = []
-    k6Contents = []
-    k7Contents = []
-    k8Contents = []
-    k9Contents = []
-    k10Contents = []
-    expValues = []
-    e = 0
-    for e in range(252):
-      absSquare = (np.absolute( final_state[e] ))**2
-      sum1 = sum1 + ((absSquare)*(k1[e]))     #expectation value of k = 1 case
-      k1Contents.append(sum1)
-    expValues.append(sum1)  
-    e = 0
-    for e in range(252):
-      absSquare = (np.absolute( final_state[e] ))**2
-      sum2 = sum2 + ((absSquare)*(k2[e])) #expectation value of k = 2 case 
-      k2Contents.append(sum2)
-    expValues.append(sum2)  
-    e = 0
-    for e in range(252):
-      absSquare = (np.absolute( final_state[e] ))**2
-      sum3 = sum3 + ((absSquare)*(k3[e]))
-      k3Contents.append(sum3)
-    expValues.append(sum3)           #expectation value of k = 3 case
-    e = 0
-    for e in range(252):
-      absSquare = (np.absolute( final_state[e] ))**2
-      sum4 = sum4 + ((absSquare)*(k4[e])) #expectation value of k = 4 case
-      k4Contents.append(sum4)
-    expValues.append(sum4)  
-    e = 0
-    for e in range(252):
-      absSquare = (np.absolute( final_state[e] ))**2
-      sum5 = sum5 + ((absSquare)*(k5[e])) #expectation value of k = 5 case
-      k5Contents.append(sum5)
-    expValues.append(sum5)
-    e = 0
-    for e in range(252):
-      absSquare = (np.absolute( final_state[e] ))**2
-      sum6 = sum6 + ((absSquare)*(k6[e])) #expectation value of k = 6 case
-      k6Contents.append(sum6)
-    expValues.append(sum6)  
-    e = 0
-    for e in range(252):
-      absSquare = (np.absolute( final_state[e] ))**2
-      sum7 = sum7 + ((absSquare)*(k7[e])) #expectation value of k = 7 case
-      k7Contents.append(sum7)
-    expValues.append(sum7)  
-    e = 0
-    for e in range(252):
-      absSquare = (np.absolute( final_state[e] ))**2
-      sum8 = sum8 + ((absSquare)*(k8[e])) #expectation value of k = 8 case
-      k8Contents.append(sum8)
-    expValues.append(sum8)
-    e = 0
-    for e in range(252):
-      absSquare = (np.absolute( final_state[e] ))**2
-      sum9 = sum9 + ((absSquare)*(k9[e])) #expectation value of k = 9 case
-      k9Contents.append(sum9)
-    expValues.append(sum9) 
-    e = 0
-    for e in range(252):
-      absSquare = (np.absolute( final_state[e] ))**2
-      sum10 = sum10 + ((absSquare)*(k10[e])) #expectation value of k = 10 case
-      k10Contents.append(sum10)
-    expValues.append(sum10)    
-    print("This is sum10: ", sum10)
-    stepper = (delta_t*1000) / 252
-    time = np.arange(delta_t, 1000*delta_t, step = stepper)
-   # time = np.linspace(delta_t, 1000*delta_t, num = 10 )
-    #print(k1Contents)
+    state = init_state 
+    for h in range(iteration2):
+      state = np.dot(evolOP, state)
+      prob = np.absolute(state)**2
+      for k in range(1, 11):
+          if h == 1:
+             
+            print(k)
+          #sum = 0
+          #for m in range(1, numbOfStatesN):
+               #binaryN, current k level
+          if k == 1:
+            n_kExpVal = np.dot(prob, k1)
+            dataY[h][0] = n_kExpVal
+            plt.plot(h, dataY[h][0])
+          if k == 2:
+            n_kExpVal = np.dot(prob, k2)
+            dataY[h][1] = n_kExpVal
 
-   #  time = np.arange(delta_t, 1000*delta_t)
-    print("<n_k array> array:",expValues)
-    print("time:", np.shape(time))
-    print("energy:", e_k)
- #   print(stepper)
-    plt.title("Q4 plot: Fitting the numerical results with the Fermi Dirac distribution") 
-    plt.xlabel("e_k (single electron orbital energies of a multi electron atom)")
-  #  plt.xlabel("time (s)")
-    plt.ylabel("<n_k>  expectation values")
-  #  plt.plot(np.absolute(e_k), expValues)
-   # plt.plot(time, k1Contents, label = "K = 1")
-  #  plt.plot(time, k2Contents, label = "K = 2")
-  #  plt.plot(time, k3Contents, label = "K = 3")
-  #  plt.plot(time, k4Contents, label = "K = 4")
-  #  plt.plot(time, k5Contents, label = "K = 5")
-   # plt.plot(time, k6Contents, label = "K = 6")
-  #  plt.plot(time, k7Contents, label = "K = 7")
-   # plt.plot(time, k8Contents, label = "K = 8")
-   # plt.plot(time, k9Contents, label = "K = 9")
-   # plt.plot(time, k10Contents, label = "K = 10")
-   # plt.legend()
+          if k == 3:
+            n_kExpVal = np.dot(prob, k3)
+            dataY[h][2] = n_kExpVal
+          if k == 4:
+            n_kExpVal = np.dot(prob, k4)
+            dataY[h][3] = n_kExpVal
+          if k == 5:
+            n_kExpVal = np.dot(prob, k5)
+            dataY[h][4] = n_kExpVal
+          if k == 6:
+            n_kExpVal = np.dot(prob, k6)
+            dataY[h][5] = n_kExpVal
+          if k == 7:
+            n_kExpVal = np.dot(prob, k7)
+            dataY[h][6] = n_kExpVal
+          if k == 8:
+            n_kExpVal = np.dot(prob, k8)
+            dataY[h][7] = n_kExpVal
+          if k == 9:
+            n_kExpVal = np.dot(prob, k8)
+            dataY[h][8] = n_kExpVal
+          if k == 10:
+            n_kExpVal = np.dot(prob, k10)
+            dataY[h][9] = n_kExpVal
+          
+          #print(n_kExpVal, h)
+   #  sum = sum + np.dot(prob, n_kBin)
+    k1Vals = [row[0] for row in dataY]
+    k2Vals = [row[1] for row in dataY]
+    k3Vals = [row[2] for row in dataY]
+    k4Vals = [row[3] for row in dataY]
+    k5Vals = [row[4] for row in dataY]
+    k6Vals = [row[5] for row in dataY]
+    k7Vals = [row[6] for row in dataY]
+    k8Vals = [row[7] for row in dataY]
+    k9Vals = [row[8] for row in dataY]
+    k10Vals = [row[9] for row in dataY]
+    #print(np.shape(k1Vals))
+    t = np.linspace(1, 1000, num = 1000, dtype=int)
+    for row in dataY[:5]:
+        print(row) 
+    plt.xlabel("t")
+    plt.ylabel("<n_k>")
+    plt.plot(t, k1Vals, label = "k1")
+    plt.plot(t, k2Vals, label = "k2")
+    plt.plot(t, k3Vals, label = "k3")
+    plt.plot(t, k4Vals, label = "k4")
+    plt.plot(t, k5Vals, label = "k5")
+    plt.plot(t, k6Vals, label = "k6")
+    plt.plot(t, k7Vals, label = "k7")
+    plt.plot(t, k8Vals, label = "k8")
+    plt.plot(t, k9Vals, label = "k9")
+    plt.plot(t, k10Vals, label = "k10")
+    #plt.ylim(0, 1.2)
+    plt.legend()
     plt.show()
 main(K=10, N = 5, stand_dev = 0.05, delta_t=0.01, iteration2 = 1000)
 
