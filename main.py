@@ -88,7 +88,7 @@ def main(K, N, stand_dev, delta_t, iteration2):
    # pr
     #print(initial_stateBin, initial_stateInt)
     init_state = np.zeros(shape = (numbOfStatesN))
-    init_state[initial_stateInt] = 1
+    init_state[integerN[40]] = 1
    # for k in range(len(init_state)):
     #    if init_state[k] == 1:
      #       print("there is a 1 present")
@@ -211,6 +211,7 @@ def main(K, N, stand_dev, delta_t, iteration2):
     t = np.linspace(1, 1000, num = 1000, dtype=int)
     for row in dataY[:5]:
         print(row) 
+    plt.title("New plot for q3.")
     plt.xlabel("t")
     plt.ylabel("<n_k>")
     plt.plot(t, k1Vals, label = "k1")
@@ -226,5 +227,7 @@ def main(K, N, stand_dev, delta_t, iteration2):
     #plt.ylim(0, 1.2)
     plt.legend()
     plt.show()
-main(K=10, N = 5, stand_dev = 0.05, delta_t=0.01, iteration2 = 1000)
+#main(K=10, N = 5, stand_dev = 0.05, delta_t=0.01, iteration2 = 1000)
+main(K=10, N = 5, stand_dev = 0.03, delta_t=0.2, iteration2 = 1000)
+
 
