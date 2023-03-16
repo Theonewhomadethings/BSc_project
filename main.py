@@ -18,7 +18,7 @@ k7 = []
 k8 = []
 k9 = []
 k10 = []
-def main(K, N, stand_dev, delta_t, iteration2):
+def main(K, N, stand_dev, delta_t, iteration2, initialState):
     e_k = np.random.normal(loc = 0, scale = 1, size = K) #question 1a code, 10 single electron orbital energies chosen accordinbg to a standard normal gaussian 
     #Loc = Mean, Scale = Standard deviation, size = Output shape (10, )
     #print("n  [9, 8, 7, 6, 5, 4, 3, 2, 1, 0] N") # debug print statement
@@ -34,9 +34,9 @@ def main(K, N, stand_dev, delta_t, iteration2):
             binaryN.append(test_list) #saves the binary list in another list to form a list of a list
             E_n.append(dotP) #saves the non interacting many body energies calcauted in the dotp line above in a list
             #print(n, test_list, tempSum) #debug print statement.
-            if n == 31: #for question 3
-                initial_stateInt = 31  #in question 3 we have selected this integer as the initial state
-                initial_stateBin = test_list #in question 3
+           # if n == 31: #for question 3
+            #    initial_stateInt = 31  #in question 3 we have selected this integer as the initial state
+             #   initial_stateBin = test_list #in question 3
             
     #print("How many fermions =  ", len(indicesN))
     #print("size of energy array", len(E_n))
@@ -88,7 +88,7 @@ def main(K, N, stand_dev, delta_t, iteration2):
    # pr
     #print(initial_stateBin, initial_stateInt)
     init_state = np.zeros(shape = (numbOfStatesN))
-    init_state[integerN[40]] = 1
+    init_state[integerN[initialState]] = 1
    # for k in range(len(init_state)):
     #    if init_state[k] == 1:
      #       print("there is a 1 present")
@@ -156,16 +156,16 @@ def main(K, N, stand_dev, delta_t, iteration2):
       state = np.dot(evolOP, state)
       prob = np.absolute(state)**2
       for k in range(1, 11):
-          if h == 1:
+          #if h == 1:
              
-            print(k)
+          #  print(k)
           #sum = 0
           #for m in range(1, numbOfStatesN):
                #binaryN, current k level
           if k == 1:
             n_kExpVal = np.dot(prob, k1)
             dataY[h][0] = n_kExpVal
-            plt.plot(h, dataY[h][0])
+         #   plt.plot(h, dataY[h][0])
           if k == 2:
             n_kExpVal = np.dot(prob, k2)
             dataY[h][1] = n_kExpVal
@@ -209,8 +209,8 @@ def main(K, N, stand_dev, delta_t, iteration2):
     k10Vals = [row[9] for row in dataY]
     #print(np.shape(k1Vals))
     t = np.linspace(1, 1000, num = 1000, dtype=int)
-    for row in dataY[:5]:
-        print(row) 
+   # for row in dataY[:5]:
+    #    print(row) 
     plt.title("New plot for q3.")
     plt.xlabel("t")
     plt.ylabel("<n_k>")
@@ -228,6 +228,7 @@ def main(K, N, stand_dev, delta_t, iteration2):
     plt.legend()
     plt.show()
 #main(K=10, N = 5, stand_dev = 0.05, delta_t=0.01, iteration2 = 1000)
-main(K=10, N = 5, stand_dev = 0.03, delta_t=0.2, iteration2 = 1000)
+main(K=10, N = 5, stand_dev = 0.03, delta_t=0.2, iteration2 = 1000, initialState = 41)
 
+#initialState any number between 0 and 251 where when it is 0 it is integerN[0] = 31 and when it is integerN[251] it is = 991 or 992
 
