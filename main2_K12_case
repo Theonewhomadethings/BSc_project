@@ -9,7 +9,7 @@ integerN = []
 binaryN = []
 E_n = []
 
-def main(K, N, stand_dev, delta_t, iteration2, initialState):
+def main(K, N, stand_dev, delta_t, iteration2, initialState, plotQ):
     e_k = np.random.normal(loc = 0, scale = 1, size = K) #question 1a code, 10 single electron orbital energies chosen accordinbg to a standard normal gaussian 
     #Loc = Mean, Scale = Standard deviation, size = Output shape (10, )
     #print("n  [9, 8, 7, 6, 5, 4, 3, 2, 1, 0] N") # debug print statement
@@ -282,50 +282,105 @@ def main(K, N, stand_dev, delta_t, iteration2, initialState):
             dataY[h][11] = n_kExpVal
     
    #  sum = sum + np.dot(prob, n_kBin)
-    k1Vals = [row[0] for row in dataY]
-    k2Vals = [row[1] for row in dataY]
-    k3Vals = [row[2] for row in dataY]
-    k4Vals = [row[3] for row in dataY]
-    k5Vals = [row[4] for row in dataY]
-    k6Vals = [row[5] for row in dataY]
-    k7Vals = [row[6] for row in dataY]
-    k8Vals = [row[7] for row in dataY]
-    k9Vals = [row[8] for row in dataY]
-    k10Vals = [row[9] for row in dataY] #**
-    k11Vals = [row[10] for row in dataY]
-    k12Vals = [row[11] for row in dataY]
+    if K == 10: 
+      k1Vals = [row[0] for row in dataY]
+      k1mean = np.mean(k1Vals)
+      k2Vals = [row[1] for row in dataY]
+      k2mean = np.mean(k2Vals)
+      k3Vals = [row[2] for row in dataY]
+      k3mean = np.mean(k3Vals)
+      k4Vals = [row[3] for row in dataY]
+      k4mean = np.mean(k4Vals)
+      k5Vals = [row[4] for row in dataY]
+      k5mean = np.mean(k5Vals)
+      k6Vals = [row[5] for row in dataY]
+      k6mean = np.mean(k6Vals)
+      k7Vals = [row[6] for row in dataY]
+      k7mean = np.mean(k7Vals)
+      k8Vals = [row[7] for row in dataY]
+      k8mean = np.mean(k8Vals)
+      k9Vals = [row[8] for row in dataY]
+      k9mean = np.mean(k9Vals)
+      k10Vals = [row[9] for row in dataY]
+      k10mean = np.mean(k10Vals)
+      means = [k1mean, k2mean, k3mean, k4mean, k5mean, k6mean, k7mean, k8mean, k9mean, k10mean]
+    if K == 12:
+      k1Vals = [row[0] for row in dataY]
+      k1mean = np.mean(k1Vals)
+      k2Vals = [row[1] for row in dataY]
+      k2mean = np.mean(k2Vals)
+      k3Vals = [row[2] for row in dataY]
+      k3mean = np.mean(k3Vals)
+      k4Vals = [row[3] for row in dataY]
+      k4mean = np.mean(k4Vals)
+      k5Vals = [row[4] for row in dataY]
+      k5mean = np.mean(k5Vals)
+      k6Vals = [row[5] for row in dataY]
+      k6mean = np.mean(k6Vals)
+      k7Vals = [row[6] for row in dataY]
+      k7mean = np.mean(k7Vals)
+      k8Vals = [row[7] for row in dataY]
+      k8mean = np.mean(k8Vals)
+      k9Vals = [row[8] for row in dataY]
+      k9mean = np.mean(k9Vals)
+      k10Vals = [row[9] for row in dataY]
+      k10mean = np.mean(k10Vals)
+      k11Vals = [row[10] for row in dataY]
+      k11mean = np.mean(k11Vals)
+      k12Vals = [row[11] for row in dataY]
+      k12mean = np.mean(k12Vals)
+      means = [k1mean, k2mean, k3mean, k4mean, k5mean, k6mean, k7mean, k8mean, k9mean, k10mean, k11mean, k12mean]
     #print(np.shape(k1Vals))
-    t = np.linspace(1, 1000, num = 1000, dtype=int)
+    if plotQ == 3:
+      t = np.linspace(1, 1000, num = 1000, dtype=int)
    # for row in dataY[:5]:
     #    print(row) 
-    plt.title("The expectation value of the occupation numbers as function of time")
-    plt.xlabel("t")
-    plt.ylabel("<n_k>")
-    plt.plot(t, k1Vals, label = "k1")
-    plt.plot(t, k2Vals, label = "k2")
-    plt.plot(t, k3Vals, label = "k3")
-    plt.plot(t, k4Vals, label = "k4")
-    plt.plot(t, k5Vals, label = "k5")
-    plt.plot(t, k6Vals, label = "k6")
-    plt.plot(t, k7Vals, label = "k7")
-    plt.plot(t, k8Vals, label = "k8")
-    plt.plot(t, k9Vals, label = "k9")
-    plt.plot(t, k10Vals, label = "k10") #**
-    plt.plot(t, k11Vals, label = "k11")
-    plt.plot(t, k12Vals, label = "k12")
-    #plt.ylim(0, 1.2)
-    plt.legend()
+      plt.title("The expectation value of the occupation numbers as function of time")
+      plt.xlabel("t")
+      plt.ylabel("<n_k>")
+      if K == 10:
+        plt.plot(t, k1Vals, label = "k1")
+        plt.plot(t, k2Vals, label = "k2")
+        plt.plot(t, k3Vals, label = "k3")
+        plt.plot(t, k4Vals, label = "k4")
+        plt.plot(t, k5Vals, label = "k5")
+        plt.plot(t, k6Vals, label = "k6")
+        plt.plot(t, k7Vals, label = "k7")
+        plt.plot(t, k8Vals, label = "k8")
+        plt.plot(t, k9Vals, label = "k9")
+        plt.plot(t, k10Vals, label = "k10")
+      if K == 12:
+        plt.plot(t, k1Vals, label = "k1")
+        plt.plot(t, k2Vals, label = "k2")
+        plt.plot(t, k3Vals, label = "k3")
+        plt.plot(t, k4Vals, label = "k4")
+        plt.plot(t, k5Vals, label = "k5")
+        plt.plot(t, k6Vals, label = "k6")
+        plt.plot(t, k7Vals, label = "k7")
+        plt.plot(t, k8Vals, label = "k8")
+        plt.plot(t, k9Vals, label = "k9")
+        plt.plot(t, k10Vals, label = "k10") #**
+        plt.plot(t, k11Vals, label = "k11")
+        plt.plot(t, k12Vals, label = "k12")
+      #plt.ylim(0, 1.2)
+        plt.legend()
+    if plotQ == 4:
+      #plt.plot(np.absolute(e_k), means, "bo")
+      plt.plot(e_k, means, "bo")
+    print(np.shape(means))
     plt.show()
+    #print(np.shape(means))
 #main(K=10, N = 5, stand_dev = 0.05, delta_t=0.01, iteration2 = 1000)
-#main(K=10, N = 5, stand_dev = 0.03, delta_t=0.2, iteration2 = 1000, initialState = 31) # figure 1
+#main(K=10, N = 5, stand_dev = 0.03, delta_t=0.2, iteration2 = 1000, initialState = 31, plotQ = 3) # figure 1 #discussion point 2
 #main(K=10, N = 5, stand_dev = 0.018, delta_t=0.15, iteration2 = 1000, initialState = 0)
 #main(K=10, N = 5, stand_dev = 0.020, delta_t=0.12, iteration2 = 1000, initialState = 40) # figure 2
 #main(K=10, N = 5, stand_dev = 0.024, delta_t=0.12, iteration2 = 1000, initialState = 29) # figure 3
 
-#main(K=12, N = 6, stand_dev = 0.02, delta_t=0.06, iteration2 = 1000, initialState = 32) # figure 1 ver 3
-#main(K=12, N = 6, stand_dev = 0.01, delta_t= 0.1, iteration2 = 1000, initialState = 68) # figure 2 ver 3
-#main(K=12, N = 6, stand_dev = 0.016, delta_t= 0.18, iteration2 = 1000, initialState = 55) # figure 3 ver 3
-main(K=12, N = 6, stand_dev = 0.012, delta_t= 0.17, iteration2 = 1000, initialState = 36)
+#main(K=12, N = 6, stand_dev = 0.02, delta_t=0.06, iteration2 = 1000, initialState = 32, plotQ=4) # figure 1 ver 3
+#main(K=12, N = 6, stand_dev = 0.01, delta_t= 0.1, iteration2 = 1000, initialState = 68, plotQ=4) # figure 2 ver 3
+main(K=12, N = 6, stand_dev = 0.016, delta_t= 0.18, iteration2 = 1000, initialState = 55, plotQ=4) # figure 3 ver 3
+
+#main(K=12, N = 6, stand_dev = 0.012, delta_t= 0.17, iteration2 = 1000, initialState = 36, plotQ=4) #discussion point 1
 
 #delta t = 0.11 makes the lines oscillate mopre
 #intial state =68
