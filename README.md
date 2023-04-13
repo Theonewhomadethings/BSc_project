@@ -1,7 +1,7 @@
 # BSc_project
 
 Abstract:
-
+---------
 
  The aim of the project is to study how an equilibrium distribution can emerge from the unitary quantum evolution of a closed system made of identical particles, which in this case we are dealing with fermions. From an initial out-of-equilibrium state, the objective is to integrate numerically the Schrodinger equation and calculate predictions for physical observables such as particle occupation numbers. At large times, the possibility of a stationary state will be studied and any mismatch with the theoretical prediction of the Fermi-Dirac distribution in the case of fermions will be investigated. 
 Outputs
