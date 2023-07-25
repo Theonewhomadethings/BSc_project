@@ -1,4 +1,4 @@
-# BSc_project
+# BSc_project: "Simulating the dynamics of a system of interacting identical quantum particles"
 
 Abstract:
 ---------
